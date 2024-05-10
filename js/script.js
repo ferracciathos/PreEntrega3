@@ -1,32 +1,45 @@
 let cartItems = []; // Array para almacenar los elementos del carrito
 
+// Cargar el carrito desde el almacenamiento local al cargar la página
+window.onload = function() {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+        cartItems = JSON.parse(savedCart);
+        updateCart();
+    }
+}
+
+// Función para guardar el carrito en el almacenamiento local
+function saveCartToLocalStorage() {
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+}
+
 // Función para agregar un producto al carrito
 function addToCart(productName, price) {
-    // Busca si el producto ya está en el carrito
-    const existingItem = cartItems.find(item => item.name === productName);
-
-    if (existingItem) {
-        // Si el producto ya está en el carrito, sumar la cantidad
-        existingItem.quantity++;
+    const existingItemIndex = cartItems.findIndex(item => item.name === productName);
+    if (existingItemIndex !== -1) {
+        cartItems[existingItemIndex].quantity++;
     } else {
-        // Si el producto no está en el carrito, agregarlo con cantidad de 1
         cartItems.push({ name: productName, price: price, quantity: 1 });
     }
-
-    updateCart(); // Actualiza la visualización del carrito
+    updateCart();
+    saveCartToLocalStorage();
 }
 
 // Función para eliminar un producto del carrito
 function removeFromCart(index) {
-    cartItems.splice(index, 1); // Elimina el producto del array del carrito en el índice dado
-    updateCart(); // Actualiza la visualización del carrito
+    cartItems.splice(index, 1);
+    updateCart();
+    saveCartToLocalStorage();
 }
 
 // Función para actualizar la cantidad de un producto en el carrito
 function updateQuantity(index, newQuantity) {
-    cartItems[index].quantity = newQuantity; // Actualiza la cantidad del producto en el carrito
-    updateCart(); // Actualiza la visualización del carrito
+    cartItems[index].quantity = newQuantity;
+    updateCart();
+    saveCartToLocalStorage();
 }
+
 
 // Función para actualizar la visualización del carrito
 function updateCart() {
@@ -77,9 +90,10 @@ function updateCart() {
 
 // Función para finalizar la compra
 function checkout() {
-    alert('Muchas gracias por tu compra viajero!');
+    alert('Compra realizada');
     cartItems = [];
     updateCart();
+    saveCartToLocalStorage();
 }
 
 // Función para mostrar u ocultar el carrito
