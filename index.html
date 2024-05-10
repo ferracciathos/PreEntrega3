@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <title> EL BUEN VIAJERO </title>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="text-nav">
+            <h2>EL BUEN VIAJERO</h2>
+        </div>
+    </header>
+
+
+    <section class="title-container">
+        <div class="title-content">
+            <h3>Agencia de viajes</h3>
+            <p>Explora el mundo con nuestra selección de destinos en toda Europa.</p>
+        </div>
+    </section>
+
+    <!-- PRODUCTOS -->
+    <section class="container-products">
+        <card class="products">
+            <h3>Santorini, Grecia</h3>
+            <img src="assets/grecia.jpg" alt="Santorini">
+            <p>$1600</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Santorini', 1600)">Agregar al carrito</button>
+        </card>
+        <div class="products">
+            <h3>Paris, Francia</h3>
+            <img src="assets/paris-eiffel.avif" alt="Paris">
+            <p>$1800</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Paris', 1800)">Agregar al carrito</button>
+        </div>
+        <div class="products">
+            <h3>Roma, Italia</h3>
+            <img src="assets/roma-coliseo.webp" alt="Roma">
+            <p>$1200</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Roma', 1200)">Agregar al carrito</button>
+        </div>
+        <div class="products">
+            <h3>Venecia, Italia</h3>
+            <img src="assets/venecia.jpg" alt="Venecia">
+            <p>$1400</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Venecia', 1400)">Agregar al carrito</button>
+        </div>
+    </section>
+
+    <!-- CARRITO -->
+    <section class="cart-btn">
+    <button class="cart-toggle-btn" onclick="toggleCart()">Ver / Ocultar carrito</button>
+    </section>
+
+    <section class="cart-container" id="cart">
+        <div class="cart-content">
+        <h2>Carrito de compras</h2>
+        <ul class="cart-items" id="cart-items">
+        </ul>
+        <p id="total">Total: €0.00</p>
+        <button id="checkout-btn" onclick="checkout()">Finalizar compra</button>
+    </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2024 Agencia de viajes - Todos los derechos reservados</p>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
