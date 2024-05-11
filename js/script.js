@@ -55,9 +55,9 @@ function updateCart() {
         const listItem = document.createElement('li');
         
         // Muestra el nombre, precio y cantidad del producto en el carrito
-        listItem.textContent = `${item.name} - $${item.price} para ${item.quantity} persona  `;
+        listItem.textContent = `${item.name} - $${item.price} por persona, ${item.quantity} persona  `;
             if (item.quantity > 1) {
-                listItem.textContent = `${item.name} - $${item.price} para ${item.quantity} personas  `;
+                listItem.textContent = `${item.name} - $${item.price} por persona, ${item.quantity} personas  `;
             }
         
         // Crea botones para sumar y restar la cantidad del producto
