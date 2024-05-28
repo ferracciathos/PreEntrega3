@@ -26,6 +26,16 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.hidden {
+    display: none;
+}
+
+#message {
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
 /* <----------------  PRODUCTOS  ----------------> */
 .container-products {
     margin: 20px auto;

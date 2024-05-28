@@ -107,7 +107,9 @@ function updateCart() {
 
 // Función para finalizar la compra
 function checkout() {
-    alert('Compra realizada');
+    const messageElement = document.getElementById('message');
+    messageElement.innerText = 'Compra realizada, ¡muchas gracias!';
+    messageElement.classList.remove('hidden');
     cartItems = [];
     updateCart();
     saveCartToLocalStorage();
