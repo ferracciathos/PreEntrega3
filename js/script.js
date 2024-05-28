@@ -8,6 +8,23 @@ window.onload = function() {
         updateCart();
     }
 }
+// Añadir eventos a los botones de agregar al carrito
+    const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+    addToCartButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            const product = button.parentElement.querySelector('h3').textContent;
+            const price = parseFloat(button.parentElement.querySelector('p').textContent.replace('$', ''));
+            addToCart(product, price);
+        });
+    });
+
+// Añadir evento al botón de mostrar/ocultar carrito
+    document.querySelector('.cart-toggle-btn').addEventListener('click', toggleCart);
+
+// Añadir evento al botón de finalizar compra
+    document.getElementById('checkout-btn').addEventListener('click', checkout);
+
+
 
 // Función para guardar el carrito en el almacenamiento local
 function saveCartToLocalStorage() {
