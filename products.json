@@ -1,0 +1,6 @@
+[
+    { "name": "Santorini, Grecia", "price": 1600, "image": "assets/grecia.jpg" },
+    { "name": "Paris, Francia", "price": 1800, "image": "assets/paris-eiffel.avif" },
+    { "name": "Roma, Italia", "price": 1200, "image": "assets/roma-coliseo.webp" },
+    { "name": "Venecia, Italia", "price": 1400, "image": "assets/venecia.jpg" }
+]

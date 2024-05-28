@@ -31,6 +31,53 @@ function saveCartToLocalStorage() {
     localStorage.setItem('cart', JSON.stringify(cartItems));
 }
 
+// Obtener los datos de los productos mediante fetch
+fetch('products.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al obtener los datos de los productos');
+        }
+        return response.json();
+    })
+    .then(products => {
+        // Renderizar los productos en la página
+        renderProducts(products);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+// Función para renderizar los productos
+function renderProducts(products) {
+    const productList = document.getElementById('product-list');
+    products.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.classList.add('products');
+        
+        const productTitle = document.createElement('h3');
+        productTitle.textContent = product.name;
+        
+        const productImage = document.createElement('img');
+        productImage.src = product.image;
+        productImage.alt = product.name;
+        
+        const productPrice = document.createElement('p');
+        productPrice.textContent = `$${product.price}`;
+        
+        const addButton = document.createElement('button');
+        addButton.classList.add('add-to-cart-btn');
+        addButton.textContent = 'Agregar al carrito';
+        addButton.addEventListener('click', () => addToCart(product.name, product.price));
+        
+        productCard.appendChild(productTitle);
+        productCard.appendChild(productImage);
+        productCard.appendChild(productPrice);
+        productCard.appendChild(addButton);
+        
+        productList.appendChild(productCard);
+    });
+}
+
 // Función para agregar un producto al carrito
 function addToCart(productName, price) {
     const existingItemIndex = cartItems.findIndex(item => item.name === productName);
@@ -107,12 +154,25 @@ function updateCart() {
 
 // Función para finalizar la compra
 function checkout() {
-    const messageElement = document.getElementById('message');
-    messageElement.innerText = 'Compra realizada, ¡muchas gracias!';
-    messageElement.classList.remove('hidden');
-    cartItems = [];
-    updateCart();
-    saveCartToLocalStorage();
+    if (cartItems.length === 0) {
+        Swal.fire({
+            icon: 'error',
+            title: 'El carrito está vacío',
+            text: 'Si no ponés nada en el carrito va a estar medio dificil comprar algo.',
+            confirmButtonText: 'Aceptar'
+        });
+    } else {
+        Swal.fire({
+            icon: 'success',
+            title: '¡Compra realizada!',
+            text: '¡Muchas gracias por tu compra!',
+            confirmButtonText: 'Aceptar'
+        }).then(() => {
+            cartItems = [];
+            updateCart();
+            saveCartToLocalStorage();
+        });
+    }
 }
 
 // Función para mostrar u ocultar el carrito
